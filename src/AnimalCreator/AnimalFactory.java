@@ -1,11 +1,12 @@
 package AnimalCreator;
 
 import Animals.*;
+
 import java.io.IOException;
 import java.util.Map;
 
-public class AnimalFactory  {
-    private  static Map<String, Animal> animalData;
+public class AnimalFactory {
+    private static Map<String, Animal> animalData;
 
     public static void setAnimalData(Map<String, Animal> animalData) {
         AnimalFactory.animalData = animalData;
@@ -13,8 +14,7 @@ public class AnimalFactory  {
 
     public static Animal createAnimal(String animalType) throws IOException {
 
-        switch (animalType)
-        {
+        switch (animalType) {
             case "wolf" -> {
                 return new Wolf(animalData.get("wolf").getWeight(), animalData.get("wolf").getMaxInCell(), animalData.get("wolf").getMaxMove(), animalData.get("wolf").getKgToBeFull(), animalData.get("wolf").getChanceToReproduce());
             }
@@ -36,7 +36,6 @@ public class AnimalFactory  {
             case "mouse" -> {
                 return new Mouse(animalData.get("mouse").getWeight(), animalData.get("mouse").getMaxInCell(), animalData.get("mouse").getMaxMove(), animalData.get("mouse").getKgToBeFull(), animalData.get("mouse").getChanceToReproduce());
             }
-
             default -> throw new IOException();
         }
 

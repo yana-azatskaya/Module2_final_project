@@ -1,4 +1,5 @@
 package World;
+
 import ServicePackage.MetaDataReader;
 
 import java.io.IOException;
@@ -9,11 +10,10 @@ import java.util.List;
 public class WorldCreator {
     public static List<FloraFauna>[][] createWorld() throws IOException {
         World createdWorld = MetaDataReader.readMetaData(WorldWrapper.class, "src/resources/worldCharacteristic.yaml").getWorld();
-        List<FloraFauna>[][] world = new ArrayList [createdWorld.getLength()][createdWorld.getWidth()];
-        for (int i = 0; i < world.length; i++ ){
-            for (int p = 0; p < world[0].length; p++)
-            {
-                world [i][p] = new ArrayList<FloraFauna>();
+        List<FloraFauna>[][] world = new ArrayList[createdWorld.getLength()][createdWorld.getWidth()];
+        for (int i = 0; i < world.length; i++) {
+            for (int p = 0; p < world[0].length; p++) {
+                world[i][p] = new ArrayList<>();
             }
         }
         return world;

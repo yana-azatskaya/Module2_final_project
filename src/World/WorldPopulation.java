@@ -20,9 +20,9 @@ public class WorldPopulation {
     int startHorse;
     @JsonProperty("startSnake")
     int startSnake;
-    @JsonProperty ("startMouse")
+    @JsonProperty("startMouse")
     int startMouse;
-    @JsonProperty ("startGrass")
+    @JsonProperty("startGrass")
     int startGrass;
 
     public WorldPopulation() {

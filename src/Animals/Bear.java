@@ -1,4 +1,5 @@
 package Animals;
+
 public class Bear extends Animal {
 
     public Bear(double weight, int maxInCell, int maxMove, double kgToBeFull, int chanceToReproduce) {
@@ -6,7 +7,7 @@ public class Bear extends Animal {
     }
 
     @Override
-    public String toString(){
-    return "\uD83D\uDC3B";
+    public String toString() {
+        return "\uD83D\uDC3B";
     }
 }

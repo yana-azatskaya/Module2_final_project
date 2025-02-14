@@ -1,4 +1,5 @@
 package Animals;
+
 public class Wolf extends Animal {
     public Wolf(double weight, int maxInCell, int maxMove, double kgToBeFull, int chanceToReproduce) {
         super(weight, maxInCell, maxMove, kgToBeFull, chanceToReproduce);

@@ -1,7 +1,12 @@
 package AnimalActivityController.Movement;
-import AnimalActivityController.*;
+
+import AnimalActivityController.AnimalAmountInCellController;
+import AnimalActivityController.AnimalMaxAmountInCellController;
 import Animals.Animal;
-import World.*;
+import World.FloraFauna;
+import World.World;
+import World.WorldCreator;
+
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalTime;
@@ -13,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MultiThreadingMovement {
 
-    static List<FloraFauna>[][] world = World.getWorld();
+    static final List<FloraFauna>[][] world = World.getWorld();
 
     public static void move() throws IOException {
         LocalTime startTime = LocalTime.now();
@@ -30,9 +35,9 @@ public class MultiThreadingMovement {
                     while (iterator.hasNext()) {
                         FloraFauna floraFauna = iterator.next();
                         if (floraFauna instanceof Animal) {
-                            List<Integer> listOfDirection = DirectionСhoice.chooseDirection((Animal)floraFauna);
+                            List<Integer> listOfDirection = DirectionСhoice.chooseDirection((Animal) floraFauna);
                             int cellsToGo = MovementValidator.validateMovement(listOfDirection, finalI, finalP);
-                            switch (listOfDirection.get(0)) {
+                            switch (listOfDirection.getFirst()) {
                                 case 0 -> newY = finalP - cellsToGo;
                                 case 1 -> newY = finalP + cellsToGo;
                                 case 2 -> newX = finalI - cellsToGo;

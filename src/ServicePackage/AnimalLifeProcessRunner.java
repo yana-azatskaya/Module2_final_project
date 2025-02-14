@@ -1,16 +1,19 @@
 package ServicePackage;
-import AnimalActivityController.ReproduceService;
+
 import AnimalActivityController.EatingController.EatService;
-import AnimalActivityController.Movement.*;
+import AnimalActivityController.Movement.Movement;
+import AnimalActivityController.ReproduceService;
+
 import java.io.IOException;
-public class AnimalLifeProcessRunner implements Runnable{
+
+public class AnimalLifeProcessRunner implements Runnable {
     public void run() {
         try {
-           Movement.move();
+            Movement.move();
             System.out.println("The animals have moved");
-           ReproduceService.reproduce();
+            ReproduceService.reproduce();
             System.out.println("The animals have reproduced");
-           EatService.eat();
+            EatService.eat();
             System.out.println("The animals have eaten");
         } catch (IOException e) {
             throw new RuntimeException(e);

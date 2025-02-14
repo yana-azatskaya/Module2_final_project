@@ -1,19 +1,23 @@
 package ServicePackage;
+
 import AnimalCreator.AnimalContainer;
 import AnimalCreator.AnimalFactory;
 import Animals.Animal;
 import World.World;
 import World.WorldCreator;
 import World.WorldRepopulationService;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Start {
     public static void start() throws IOException {
         World.setWorld(WorldCreator.createWorld());
-        Map <String, Animal> animalData = MetaDataReader.readMetaData(AnimalContainer.class, "src/resources/animalsMetaData.yaml").getAnimals();
+        Map<String, Animal> animalData = MetaDataReader.readMetaData(AnimalContainer.class, "src/resources/animalsMetaData.yaml").getAnimals();
         AnimalFactory.setAnimalData(animalData);
         WorldRepopulationService.RepopulateWorld(animalData, World.getWorld());
 
@@ -26,7 +30,8 @@ public class Start {
 
         executor.schedule(() -> {
             executor.shutdown();
-            System.out.println("The programm stopped running succesfully");}, 1, TimeUnit.MINUTES);
+            System.out.println("The program stopped running successfully");
+        }, 1, TimeUnit.MINUTES);
 
         ScheduledExecutorService finalReport = Executors.newSingleThreadScheduledExecutor();
         finalReport.schedule(new FinalReport(), 1, TimeUnit.MINUTES);

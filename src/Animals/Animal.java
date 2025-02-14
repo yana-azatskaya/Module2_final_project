@@ -1,4 +1,5 @@
 package Animals;
+
 import World.FloraFauna;
 import lombok.Setter;
 import lombok.ToString;
@@ -6,13 +7,14 @@ import lombok.ToString;
 @ToString
 @Setter
 public class Animal extends FloraFauna {
+    static int possibleNumberOfBabies = 5;
     double weight; //Animal's weight
     int maxInCell; //Maximum number of animals of this species per cell
     int maxMove; //Speed of movement, not more than, cells per turn
     double kgToBeFull; //How many kilograms of food an animal needs to be fully satiated
     int chanceToReproduce;
+    @Setter
     double fullness;
-    static int possibleNumberOfBabies = 5;
 
     public Animal() {
 
@@ -25,6 +27,10 @@ public class Animal extends FloraFauna {
         this.kgToBeFull = kgToBeFull;
         this.chanceToReproduce = chanceToReproduce;
         this.fullness = kgToBeFull;
+    }
+
+    public static int getPossibleNumberOfBabies() {
+        return possibleNumberOfBabies;
     }
 
     public double getWeight() {
@@ -41,10 +47,6 @@ public class Animal extends FloraFauna {
 
     public double getKgToBeFull() {
         return kgToBeFull;
-    }
-
-    public static int getPossibleNumberOfBabies() {
-        return possibleNumberOfBabies;
     }
 
     public int getChanceToReproduce() {

@@ -1,6 +1,6 @@
 package Animals;
 
-public class Horse extends Animal{
+public class Horse extends Animal {
     public Horse(double weight, int maxInCell, int maxMove, double kgToBeFull, int chanceToReproduce) {
         super(weight, maxInCell, maxMove, kgToBeFull, chanceToReproduce);
     }

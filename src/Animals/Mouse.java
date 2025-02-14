@@ -1,6 +1,6 @@
 package Animals;
 
-public class Mouse extends Animal{
+public class Mouse extends Animal {
     public Mouse(double weight, int maxInCell, int maxMove, double kgToBeFull, int chanceToReproduce) {
         super(weight, maxInCell, maxMove, kgToBeFull, chanceToReproduce);
     }

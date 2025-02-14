@@ -1,15 +1,16 @@
 package World;
+
 import AnimalActivityController.AnimalAmountInCellController;
 import AnimalActivityController.AnimalMaxAmountInCellController;
 import AnimalCreator.AnimalFactory;
 import Animals.Animal;
 import Grass.Grass;
 import ServicePackage.MetaDataReader;
+import ServicePackage.Randomasier;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
-import ServicePackage.Randomasier;
 
 public class WorldRepopulationService {
 
@@ -17,7 +18,7 @@ public class WorldRepopulationService {
 
         WorldPopulation worldPopulation = MetaDataReader.readMetaData(WorldPopulation.class, "src/resources/worldPopulation.yaml");
 
-        for (String animalType: animalData.keySet()) {
+        for (String animalType : animalData.keySet()) {
             int maxPopulation = switch (animalType) {
                 case "bear" -> worldPopulation.getStartBear();
                 case "deer" -> worldPopulation.getStartDeer();
@@ -31,17 +32,17 @@ public class WorldRepopulationService {
 
             int amountOfAnimal = new Randomasier().getChance(maxPopulation);
             for (int i = 0; i < amountOfAnimal; i++) {
-                Animal animal = new AnimalFactory().createAnimal(animalType);
-                int x = new Randomasier().getChance(world.length-1);
-                int y = new Randomasier().getChance(world[0].length-1);
+                Animal animal = AnimalFactory.createAnimal(animalType);
+                int x = new Randomasier().getChance(world.length - 1);
+                int y = new Randomasier().getChance(world[0].length - 1);
                 if ((AnimalMaxAmountInCellController.controlAnimalMaxAmountInCell(animal, AnimalAmountInCellController.countAnimal(world[x][y])))) {
                     world[x][y].add(animal);
                 }
             }
         }
-        for (int i = 0; i < worldPopulation.getStartGrass(); i++){
-            int x = new Randomasier().getChance(world.length-1);
-            int y = new Randomasier().getChance(world[0].length-1);
+        for (int i = 0; i < worldPopulation.getStartGrass(); i++) {
+            int x = new Randomasier().getChance(world.length - 1);
+            int y = new Randomasier().getChance(world[0].length - 1);
             world[x][y].add(new Grass());
         }
 
