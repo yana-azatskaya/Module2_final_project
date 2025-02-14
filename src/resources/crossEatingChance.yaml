@@ -1,0 +1,16 @@
+eatingChance:
+  wolf:
+    deer: 15
+    horse: 10
+    mouse: 80
+
+  snake:
+    fox: 15
+    mouse: 40
+
+  fox:
+    mouse: 90
+
+  bear:
+    snake: 15
+    mouse: 90

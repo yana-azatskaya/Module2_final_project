@@ -1,0 +1,49 @@
+animals:
+  wolf:
+    weight: 50
+    maxInCell: 30
+    maxMove: 3
+    kgToBeFull: 8
+    chanceToReproduce: 50
+
+  snake:
+    weight: 15
+    maxInCell: 30
+    maxMove: 1
+    kgToBeFull: 3
+    chanceToReproduce: 50
+
+  fox:
+    weight: 8
+    maxInCell: 30
+    maxMove: 2
+    kgToBeFull: 2
+    chanceToReproduce: 50
+
+  bear:
+    weight: 500
+    maxInCell: 5
+    maxMove: 2
+    kgToBeFull: 80
+    chanceToReproduce: 50
+
+  horse:
+    weight: 400
+    maxInCell: 20
+    maxMove: 4
+    kgToBeFull: 60
+    chanceToReproduce: 50
+
+  deer:
+    weight: 300
+    maxInCell: 20
+    maxMove: 4
+    kgToBeFull: 50
+    chanceToReproduce: 50
+
+  mouse:
+    weight: 0.05
+    maxInCell: 35
+    maxMove: 1
+    kgToBeFull: 0.01
+    chanceToReproduce: 50
