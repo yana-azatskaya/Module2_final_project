@@ -8,13 +8,16 @@ import lombok.Getter;
 import java.util.Map;
 
 @Getter
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class AnimalContainer {
     @JsonProperty("animals")
-    public Map<String, Animal> animalContainer;
+    public  Map<String, Animal> animalContainer;
 
-    public Map<String, Animal> getAnimals() {
+    public  Map<String, Animal> getAnimals() {
         return animalContainer;
+    }
+
+    public boolean isValid(){
+        return animalContainer !=null;
     }
 }
 

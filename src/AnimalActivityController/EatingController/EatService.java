@@ -2,11 +2,12 @@ package AnimalActivityController.EatingController;
 
 import AnimalActivityController.Starvation;
 import Animals.Animal;
+import Exceptions.PredatorHasNoChanceToEat;
+import Exceptions.WrongInputException;
 import Grass.Grass;
 import ServicePackage.MetaDataReader;
 import World.FloraFauna;
 import World.World;
-import java.io.IOException;
 import java.util.*;
 import static AnimalActivityController.EatingController.EatingProcessController.eatingSuccessful;
 import static AnimalActivityController.EatingController.EatingProcessController.fullnessReducer;
@@ -14,12 +15,12 @@ import static AnimalActivityController.EatingController.EatingProcessController.
 public class EatService {
     private static Map<String, Map<String, Integer>> receiveEatingChance;
 
-    public static void getEatingChance() throws IOException {
+    public static void getEatingChance() throws WrongInputException {
         EatingChanceContainer chanceToEat = MetaDataReader.readMetaData(EatingChanceContainer.class, "src/resources/crossEatingChance.yaml");
         receiveEatingChance = chanceToEat.getEatingChance();
     }
 
-    public static void eat() throws IOException {
+    public static void eat() throws WrongInputException, PredatorHasNoChanceToEat{
         getEatingChance();
         List<FloraFauna>[][] currentWorld = World.getWorld();
         for (int i = 0; i < currentWorld.length; i++) {
@@ -30,19 +31,24 @@ public class EatService {
                         String animalType = castedAnimal.getClass().getSimpleName().toLowerCase();
                         boolean hasEaten = false;
 
-                        if (receiveEatingChance.containsKey(animalType)) {
-                            Iterator<FloraFauna> victimIterator = currentWorld[i][p].iterator();
-                            while (victimIterator.hasNext() && !hasEaten) {
+                        if (castedAnimal.isPredator()) {
+                            if (receiveEatingChance.containsKey(animalType)) {
+                                Iterator<FloraFauna> victimIterator = currentWorld[i][p].iterator();
+                                while (victimIterator.hasNext() && !hasEaten) {
 
-                                FloraFauna victim = victimIterator.next();
-                                String victimType = victim.getClass().getSimpleName().toLowerCase();
-                                if (receiveEatingChance.get(animalType).containsKey(victimType) && !toRemove.contains(victim) && eatingSuccessful(receiveEatingChance.get(animalType).get(victimType))) {
-                                    toRemove.add(victim);
-                                    castedAnimal.setFullness(Math.min(castedAnimal.getKgToBeFull(), castedAnimal.getFullness() + ((Animal) victim).getWeight()));
-                                    hasEaten = true;
+                                    FloraFauna victim = victimIterator.next();
+                                    String victimType = victim.getClass().getSimpleName().toLowerCase();
+                                    if (receiveEatingChance.get(animalType).containsKey(victimType) && !toRemove.contains(victim)
+                                            && eatingSuccessful(receiveEatingChance.get(animalType).get(victimType))) {
+                                        toRemove.add(victim);
+                                        castedAnimal.setFullness(Math.min(castedAnimal.getKgToBeFull(), castedAnimal.getFullness() + ((Animal) victim).getWeight()));
+                                        hasEaten = true;
+                                    }
                                 }
                             }
-                        } else {
+                            else throw new PredatorHasNoChanceToEat(animalType + " is predator, but crossEatingChanceFile contains no configuration for its victims type");
+                        }
+                        else {
                             Iterator<FloraFauna> grassIterator = currentWorld[i][p].iterator();
                             while (grassIterator.hasNext() && !hasEaten) {
                                 FloraFauna food = grassIterator.next();

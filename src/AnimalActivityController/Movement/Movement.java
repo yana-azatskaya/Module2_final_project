@@ -3,6 +3,7 @@ package AnimalActivityController.Movement;
 import AnimalActivityController.AnimalAmountInCellController;
 import AnimalActivityController.AnimalMaxAmountInCellController;
 import Animals.Animal;
+import Exceptions.WrongInputException;
 import World.FloraFauna;
 import World.World;
 import World.WorldCreator;
@@ -11,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Movement {
-    public static void move() throws IOException {
+    public static void move() throws WrongInputException {
         List<FloraFauna>[][] world = World.getWorld();
         List<FloraFauna>[][] worldAfterMovement = WorldCreator.createWorld();
         for (int i = 0; i < world.length; i++) {

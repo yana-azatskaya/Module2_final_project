@@ -32,6 +32,10 @@ public class Animal extends FloraFauna {
         return possibleNumberOfBabies;
     }
 
+    public boolean isPredator() {
+        return false;
+    }
+
     public double getWeight() {
         return weight;
     }

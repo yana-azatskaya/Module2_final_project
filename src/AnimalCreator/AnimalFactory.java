@@ -1,17 +1,23 @@
 package AnimalCreator;
 
 import Animals.*;
+import Exceptions.NoKnownAnimalException;
+import Exceptions.WrongInputException;
+
 import java.io.IOException;
 import java.util.Map;
 
 public class AnimalFactory {
     private static Map<String, Animal> animalData;
 
-    public static void setAnimalData(Map<String, Animal> animalData) {
-        AnimalFactory.animalData = animalData;
+    public static void setAnimalData(Map<String, Animal> animalData) throws NoKnownAnimalException {
+        if (animalData !=null) {
+            AnimalFactory.animalData = animalData;
+        }
+        else throw new NoKnownAnimalException("Your input file doesn't contain any value for known animal type");
     }
 
-    public static Animal createAnimal(String animalType) throws IOException {
+    public static Animal createAnimal(String animalType) throws WrongInputException {
 
         switch (animalType) {
             case "wolf" -> {
@@ -35,8 +41,7 @@ public class AnimalFactory {
             case "mouse" -> {
                 return new Mouse(animalData.get("mouse").getWeight(), animalData.get("mouse").getMaxInCell(), animalData.get("mouse").getMaxMove(), animalData.get("mouse").getKgToBeFull(), animalData.get("mouse").getChanceToReproduce());
             }
-            default -> throw new IOException();
+            default -> throw new WrongInputException("Your input contains unexpected value: " + animalType);
         }
-
     }
 }

@@ -2,6 +2,7 @@ package AnimalActivityController;
 
 import AnimalCreator.AnimalFactory;
 import Animals.Animal;
+import Exceptions.WrongInputException;
 import ServicePackage.Randomasier;
 import World.FloraFauna;
 import World.World;
@@ -11,7 +12,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ReproduceService {
-    public static void reproduce() throws IOException {
+    public static void reproduce() throws WrongInputException {
         List<FloraFauna>[][] worldAfterReproducing = World.getWorld();
 
         for (int i = 0; i < worldAfterReproducing.length; i++) {
@@ -33,7 +34,7 @@ public class ReproduceService {
 
     }
 
-    public static List<FloraFauna> reproduceAnimal(List<FloraFauna> allWorld) throws IOException {
+    public static List<FloraFauna> reproduceAnimal(List<FloraFauna> allWorld)  throws WrongInputException {
 
         Map<String, Integer> animalPairs = controlReproducing(AnimalAmountInCellController.countAnimal(allWorld));
         if (animalPairs != null) {

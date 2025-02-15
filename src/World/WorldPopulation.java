@@ -37,6 +37,7 @@ public class WorldPopulation {
         this.startSnake = startSnake;
     }
 
+
     public int getStartWolf() {
         return startWolf;
     }
