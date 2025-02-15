@@ -1,7 +1,6 @@
 package ServicePackage;
 
 import World.World;
-
 import java.util.Arrays;
 
 public class FinalReport implements Runnable {

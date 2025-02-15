@@ -7,7 +7,6 @@ import World.World;
 import java.util.List;
 
 public class Grass extends FloraFauna {
-    Grass grass;
 
     public static void grassGrowing() {
         List<FloraFauna>[][] worldWithGrass = World.getWorld();

@@ -1,7 +1,6 @@
 package AnimalActivityController.Movement;
 
 import World.World;
-
 import java.util.List;
 
 public class MovementValidator {

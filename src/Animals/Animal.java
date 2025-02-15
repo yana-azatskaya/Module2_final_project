@@ -13,7 +13,6 @@ public class Animal extends FloraFauna {
     int maxMove; //Speed of movement, not more than, cells per turn
     double kgToBeFull; //How many kilograms of food an animal needs to be fully satiated
     int chanceToReproduce;
-    @Setter
     double fullness;
 
     public Animal() {

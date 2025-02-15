@@ -2,7 +2,6 @@ package AnimalActivityController.Movement;
 
 import Animals.Animal;
 import ServicePackage.Randomasier;
-
 import java.util.List;
 
 /*

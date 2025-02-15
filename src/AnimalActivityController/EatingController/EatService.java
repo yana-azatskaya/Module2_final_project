@@ -6,10 +6,8 @@ import Grass.Grass;
 import ServicePackage.MetaDataReader;
 import World.FloraFauna;
 import World.World;
-
 import java.io.IOException;
 import java.util.*;
-
 import static AnimalActivityController.EatingController.EatingProcessController.eatingSuccessful;
 import static AnimalActivityController.EatingController.EatingProcessController.fullnessReducer;
 

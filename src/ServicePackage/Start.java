@@ -6,7 +6,6 @@ import Animals.Animal;
 import World.World;
 import World.WorldCreator;
 import World.WorldRepopulationService;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
@@ -16,8 +15,13 @@ import java.util.concurrent.TimeUnit;
 
 public class Start {
     public static void start() throws IOException {
-        World.setWorld(WorldCreator.createWorld());
-        Map<String, Animal> animalData = MetaDataReader.readMetaData(AnimalContainer.class, "src/resources/animalsMetaData.yaml").getAnimals();
+        try {
+            World.setWorld(WorldCreator.createWorld());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Map<String, Animal> animalData = null;
+        animalData = MetaDataReader.readMetaData(AnimalContainer.class, "src/resources/animalsMetaData.yaml").getAnimals();
         AnimalFactory.setAnimalData(animalData);
         WorldRepopulationService.RepopulateWorld(animalData, World.getWorld());
 

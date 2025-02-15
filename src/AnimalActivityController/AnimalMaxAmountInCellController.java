@@ -1,7 +1,6 @@
 package AnimalActivityController;
 
 import Animals.Animal;
-
 import java.util.Map;
 
 public class AnimalMaxAmountInCellController {
